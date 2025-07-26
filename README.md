@@ -1,6 +1,8 @@
 # Full Stack Assessment - Nuramira Ahmad Mahmud
 
-This is my submission for the Mid-Level Full Stack Developer Technical Assessment. t A complete full-stack solution for managing courses, includes a backend API, a frontend application, database schema, and containerization setup.
+This is my submission for the Mid-Level Full Stack Developer Technical Assessment.
+
+A complete full-stack solution for managing courses, includes a backend API, a frontend application, database schema, and containerization setup.
 
 ## 📁 Project Structure
 Backend - Express.js (Node.js)
