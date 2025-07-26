@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Course API
+  version: 1.0.0
+  description: A simple API for managing courses
+
+paths:
+  /api/courses:
+    get:
+      summary: List all courses but with pagination and fillter(status)
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+        - in: query
+          name: instructor_id
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of courses (with pagination and filter by status/instructor)
+    post:
+      summary: Create a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          description: Course created
+
+  /api/courses/{id}:
+    get:
+      summary: Get a course by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Course found
+    put:
+      summary: Update a course
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '200':
+          description: Course updated
+    delete:
+      summary: Soft delete a course
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Course deleted
+
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        instructor_id:
+          type: integer
+        status:
+          type: string
+        image_url:
+          type: string
