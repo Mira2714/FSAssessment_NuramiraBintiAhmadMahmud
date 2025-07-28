@@ -12,7 +12,7 @@ const EditCourse = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/courses/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/courses/${id}`);
         setInitialValues(res.data);
       } catch (err) {
         console.error('Error loading course:', err);
@@ -32,7 +32,7 @@ const EditCourse = () => {
     try {
       // exclude _id
       const { _id,isDeleted,deleted_at,createdAt, updatedAt,__v,  ...cleaned } = values;
-      await axios.put(`http://localhost:3000/api/courses/${id}`, cleaned);
+      await axios.put(`${process.env.REACT_APP_API_URL}/courses/${id}`, cleaned);
       alert('Course updated successfully!');
       navigate(`/courses/${id}`);
     } catch (err) {

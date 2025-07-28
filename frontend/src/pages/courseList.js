@@ -18,7 +18,7 @@ function CourseList() {
 
   const fetchInstructors = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/users/instructor?role=instructor');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/instructor?role=instructor`);
       setInstructors(res.data);
     } catch (err) {
       console.error('Failed to load instructors:', err);
@@ -32,7 +32,7 @@ function CourseList() {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/courses', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/courses`, {
         params: {
           status: statusFilter,
           instructor_id: instructorFilter,
@@ -49,7 +49,7 @@ function CourseList() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/courses/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/courses/${id}`);
       // Refresh course list
       fetchCourses();
     } catch (err) {

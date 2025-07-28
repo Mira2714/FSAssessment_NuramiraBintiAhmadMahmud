@@ -10,7 +10,7 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/courses/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/courses/${id}`);
         setCourse(res.data);
       } catch (err) {
         console.error('Error fetching course:', err);

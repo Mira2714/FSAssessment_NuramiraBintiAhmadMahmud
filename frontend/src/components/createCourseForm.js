@@ -12,7 +12,7 @@ const CreateCourse = () => {
   useEffect(() => {
     const fetchInstructors = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/users/instructor?role=instructor');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/instructor?role=instructor`);
         setInstructors(res.data);
       } catch (err) {
         console.error('Failed to load instructors:', err);
@@ -39,7 +39,7 @@ const CreateCourse = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('http://localhost:3000/api/courses', values);
+        await axios.post(`${process.env.REACT_APP_API_URL}/courses`, values);
         alert('✅ Course created successfully!');
         navigate('/');
       } catch (error) {

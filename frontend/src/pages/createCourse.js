@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import CreateCourseForm from '../components/createCourseForm';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +7,7 @@ const CreateCourse = () => {
 
   const handleCreate = async (values) => {
     try {
-      await axios.post('http://localhost:3000/api/courses', values);
+      await axios.post(`${process.env.REACT_APP_API_URL}/courses`, values);
       alert('✅ Course created');
       navigate('/');
     } catch (err) {
