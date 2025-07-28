@@ -63,7 +63,7 @@ function CourseList() {
       <div className="flex justify-between items-center mb-6 border p-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center">
-            <label className="mr-2 font-medium">Filter:</label>
+            <label className="mr-2 font-medium">Status:</label>
             <select
               className="border px-3 py-1 rounded"
               onChange={(e) => setStatusFilter(e.target.value)}
