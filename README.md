@@ -55,7 +55,7 @@ cd FSAssessment_NuramiraBintiAhmadMahmud
 ```bash
 cd backend
 npm install
-cp .env.example .env
+copy .env.example .env
 ```
 Then run:
 ```bash
@@ -69,8 +69,10 @@ Swagger UI: http://localhost:3000/api-docs
 ```bash
 cd frontend
 npm install
-cp .env
+copy .env.example .env
 ```
+**Copy `.env.example` to `.env` and update `REACT_APP_API_URL` if your backend runs on a different URL or port.
+
 Then run:
 ```bash
 npm start
