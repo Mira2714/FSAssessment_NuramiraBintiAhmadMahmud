@@ -4,10 +4,41 @@ info:
   version: 1.0.0
   description: A simple API for managing courses
 
+servers:
+  - url: http://localhost:3000
+
 paths:
+  /api/users:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
+
+  /api/users/instructor:
+    get:
+      summary: Get list of users filtered by role (e.g., instructor)
+      parameters:
+        - in: query
+          name: role
+          schema:
+            type: string
+            enum: [instructor]
+      responses:
+        '200':
+          description: A list of users with role instructor
+
   /api/courses:
     get:
-      summary: List all courses but with pagination and fillter(status)
+      summary: List all courses but with filter by status or instructor
       parameters:
         - in: query
           name: status
@@ -16,21 +47,23 @@ paths:
         - in: query
           name: instructor_id
           schema:
-            type: integer
+            type: string
       responses:
         '200':
-          description: A list of courses (with pagination and filter by status/instructor)
+          description: A list of courses (with filter by status/instructor)
     post:
-      summary: Create a course
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Course'
-      responses:
-        '201':
-          description: Course created
+        summary: Create a course
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+        responses:
+          '201':
+            description: Course created
+          '404':
+            description: Validation error
 
   /api/courses/{id}:
     get:
@@ -75,6 +108,27 @@ paths:
 
 components:
   schemas:
+    UserInput:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - password
+        - role
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: [student, instructor]
+
     Course:
       type: object
       properties:
@@ -85,7 +139,7 @@ components:
         price:
           type: number
         instructor_id:
-          type: integer
+          type: string
         status:
           type: string
         image_url:
